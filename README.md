@@ -1,1 +1,1 @@
-# aƣr Ƣeznē'bixic
+# Aƣr Ƣeznē'bixic
