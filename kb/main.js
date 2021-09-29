@@ -87,7 +87,7 @@ function __toLtnr(txt) { // LaTiN Reversible
     ['uu', 'uf'],
   ];
 
-  for (_ = 1; _ < charsList.length; _ ++) {
+  for (_ = 0; _ < charsList.length; _ ++) {
     txt = txt.replaceAll(charsList[_][0], charsList[_][1]);
     txt = txt.replaceAll(charsList[_][0].toUpperCase(), charsList[_][1].slice(0, 1).toUpperCase() + charsList[_][1].slice(1));
   }
