@@ -80,17 +80,17 @@ function __toLtnr(txt) { // LaTiN Reversible
     ['ī', 'if'],
     ['ō', 'of'],
     ['ū', 'uf'],
-    ['aa', 'af'],
-    ['ee', 'ef'],
-    ['ii', 'if'],
-    ['oo', 'of'],
-    ['uu', 'uf'],
   ];
-
   for (_ = 0; _ < charsList.length; _ ++) {
     txt = txt.replaceAll(charsList[_][0], charsList[_][1]);
-    txt = txt.replaceAll(charsList[_][0].toUpperCase(), charsList[_][1].slice(0, 1).toUpperCase() + charsList[_][1].slice(1));
+    txt = txt.replaceAll(charsList[_][0].toUpperCase(), charsList[_][1].toUpperCase());
   }
+
+  txt = txt.replace(/(A|a)[Aa]/g, '$1f');
+  txt = txt.replace(/(E|e)[Ee]/g, '$1f');
+  txt = txt.replace(/(I|i)[Ii]/g, '$1f');
+  txt = txt.replace(/(O|o)[Oo]/g, '$1f');
+  txt = txt.replace(/(U|u)[Uu]/g, '$1f');
 
   return txt;
 }
