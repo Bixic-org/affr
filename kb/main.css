@@ -4,6 +4,9 @@
 body {
   background-color: #FFFFD5;
   font-family: serif;
+  margin: 0;
+}
+#main-content {
   padding: 0 2em;
 }
 a {
@@ -57,4 +60,14 @@ a {
 #char-note {
   overflow: hidden;
   min-width: 250px;
+}
+#footer {
+  background-color: #876917;
+  text-align: center;
+  padding: 10px 10px;
+}
+#footer,
+#footer *,
+#footer a {
+  color: #FFFFD5;
 }
