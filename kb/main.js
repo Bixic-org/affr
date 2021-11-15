@@ -28,33 +28,35 @@ function _outputType() {
 }
 
 function _txtCnv(outputType, txt) {
-  const typeList = {
-    '2nd-ortho': 0,
-    'ipa': 1,
-    'ltn-trans': 2,
-    'ltn-trans-reversible': 3,
-    // 'gulja': 4
-  };
-  o = typeList[outputType];
+  /*
+    2nd-ortho             第二正書法
+    ipa                   IPA (音素)
+    ipa-phonetic          IPA (音声)
+    ltn-trans             羅字転写
+    ltn-trans-reversible  羅字転写 (長母音f型=逆変換一意)
+    gulja                 㐎字転写 (未制定)
+  */
+  txt = __toLtnR(txt);
   
-  txt = __toLtnr(txt);
-  
-  if (o == 0) {
-    txt = __ltnr2so(txt);
-  } else if (o == 1) {
-    txt = __ltnr2ipa(txt);
-  } else if (o == 2) {
-    txt = __ltnr2ltn(txt);
-  // } else if (o == 4) {
-  //   txt = __ltnr2gj(txt);
-  } else { // o == 3
+  if (outputType == '2nd-ortho') {
+    txt = __ltnR2so(txt);
+  } else if (outputType == 'ipa') {
+    txt = __ltnR2ipa(txt);
+  } else if (outputType == 'ipa-phonetic') {
+    txt = __ltnR2ipa(txt);
+    txt = __ipa2ipaPhonetic(txt);
+  } else if (outputType == 'ltn-trans') {
+    txt = __ltnR2ltn(txt);
+  // } else if (outputType == 'gulja') {
+  //   txt = __ltnR2gj(txt);
+  } else { // outputType == 'ltn-trans-reversible'
     ;
   }
   
   return txt;
 }
 
-function __toLtnr(txt) { // LaTiN Reversible
+function __toLtnR(txt) { // LaTiN Reversible
   aposSplit = txt.split("'");
   _txt = aposSplit[0];
   for (_ = 1; _ < aposSplit.length; _ ++) {
@@ -95,7 +97,7 @@ function __toLtnr(txt) { // LaTiN Reversible
   return txt;
 }
 
-function __ltnr2so(txt) { // Second Orthography
+function __ltnR2so(txt) { // Second Orthography
   aposSplit = txt.split(/H[Ff]/);
   _txt = aposSplit[0];
   for (_ = 1; _ < aposSplit.length; _ ++) {
@@ -138,7 +140,7 @@ function __ltnr2so(txt) { // Second Orthography
   return txt;
 }
 
-function __ltnr2ipa(txt) {
+function __ltnR2ipa(txt) {
   txt = txt.toLowerCase();
   txt = txt.replaceAll('ff', 'ʕ');
 
@@ -201,7 +203,32 @@ function __ltnr2ipa(txt) {
   return res;
 }
 
-function __ltnr2ltn(txt) {
+function __ipa2ipaPhonetic(txt) {
+  txt = txt.replace(/([ɖɳʈʐʂ])ɬ/g, '$1ɭ̊˔');
+  txt = txt.replace(/([ɖɳʈʐʂ])ɮ/g, '$1ɭ˔');
+  txt = txt.replace(/ɬ([ɖɳʈʐʂ])/g, 'ɭ̊˔$1');
+  txt = txt.replace(/ɮ([ɖɳʈʐʂ])/g, 'ɭ˔$1');
+
+  const affricatesList = [
+    ['t̼', 'θ̼'],
+    ['d̼', 'ð̼'],
+    ['ʈ', 'ʂ'],
+    ['ɖ', 'ʐ'],
+    ['ʈ', 'ɭ̊˔'],
+    ['ɖ', 'ɭ˔'],
+    ['ɢ', 'ʁ'],
+  ];
+  for (_ = 0; _ < affricatesList.length; _ ++) {
+    txt = txt.replaceAll(
+      affricatesList[_][0] + affricatesList[_][1],
+      affricatesList[_][0] + '͡' + affricatesList[_][1]
+    );
+  }
+
+  return txt;
+}
+
+function __ltnR2ltn(txt) {
   txt = txt.replace(/([aeiou])[Ff]/g, '$1$1');
   txt = txt.replace(/A[Ff]/g, 'Aa');
   txt = txt.replace(/E[Ff]/g, 'Ee');
