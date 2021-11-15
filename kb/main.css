@@ -58,8 +58,9 @@ a {
   font-family: 'Consolas', 'Courier New', Courier, monospace;
 }
 #char-note {
-  overflow: hidden;
   min-width: 250px;
+  overflow: hidden;
+  padding: 5px;
 }
 #footer {
   background-color: #876917;
