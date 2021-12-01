@@ -206,8 +206,10 @@ function __ltnR2ipa(txt) {
 function __ipa2ipaPhonetic(txt) {
   txt = txt.replace(/([ɖɳʈʐʂ])ɬ/g, '$1ɭ̊˔');
   txt = txt.replace(/([ɖɳʈʐʂ])ɮ/g, '$1ɭ˔');
+  txt = txt.replace(/([ɖɳʈʐʂ])t͡ɬʼ/g, '$1ʈ͡ɭ̊˔ʼ');
   txt = txt.replace(/ɬ([ɖɳʈʐʂ])/g, 'ɭ̊˔$1');
   txt = txt.replace(/ɮ([ɖɳʈʐʂ])/g, 'ɭ˔$1');
+  txt = txt.replace(/t͡ɬʼ([ɖɳʈʐʂ])/g, 'ʈ͡ɭ̊˔ʼ$1');
 
   const affricatesList = [
     ['t̼', 'θ̼'],
