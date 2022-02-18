@@ -60,45 +60,51 @@ function __toLtnR(txt) { // LaTiN Reversible
   aposSplit = txt.split("'");
   _txt = aposSplit[0];
   for (_ = 1; _ < aposSplit.length; _ ++) {
-    _txt += aposSplit[_].match(/^[A-ZА-ЯƢ]/) ? 'Hf' : 'hf';
+    _txt += aposSplit[_].match(/^[A-ZА-ЯƢ]/) ? 'Fh' : 'fh';
     _txt += aposSplit[_].slice(0, 1).toLowerCase() + aposSplit[_].slice(1);
   }
   txt = _txt;
 
   const charsList = [
     ['ƣ', 'ff'],
-    ['б', 'dm'],
-    ['г', 'zm'],
-    ['д', 'tf'],
-    ['ж', 'zj'],
-    ['м', 'nm'],
-    ['п', 'tm'],
-    ['ф', 'sm'],
-    ['ч', 'sf'],
-    ['ш', 'sj'],
-    ['ъ', 'kf'],
-    ['ā', 'af'],
-    ['ē', 'ef'],
-    ['ī', 'if'],
-    ['ō', 'of'],
-    ['ū', 'uf'],
+    ['б', 'md'],
+    ['г', 'mz'],
+    ['д', 'ft'],
+    ['ж', 'jz'],
+    ['м', 'mn'],
+    ['п', 'mt'],
+    ['ф', 'ms'],
+    ['ч', 'fs'],
+    ['ш', 'js'],
+    ['ъ', 'fk'],
+    ['ā', 'fa'],
+    ['ē', 'fe'],
+    ['ī', 'fi'],
+    ['ō', 'fo'],
+    ['ū', 'fu'],
   ];
   for (_ = 0; _ < charsList.length; _ ++) {
     txt = txt.replaceAll(charsList[_][0], charsList[_][1]);
-    txt = txt.replaceAll(charsList[_][0].toUpperCase(), charsList[_][1].toUpperCase());
+    txt = txt.replaceAll(charsList[_][0].toUpperCase(),
+        charsList[_][1].slice(0, 1).toUpperCase() + charsList[_][1].slice(1));
   }
 
-  txt = txt.replace(/(A|a)[Aa]/g, '$1f');
-  txt = txt.replace(/(E|e)[Ee]/g, '$1f');
-  txt = txt.replace(/(I|i)[Ii]/g, '$1f');
-  txt = txt.replace(/(O|o)[Oo]/g, '$1f');
-  txt = txt.replace(/(U|u)[Uu]/g, '$1f');
+  txt = txt.replace(/a[Aa]/g, 'fa');
+  txt = txt.replace(/e[Ee]/g, 'fe');
+  txt = txt.replace(/i[Ii]/g, 'fi');
+  txt = txt.replace(/o[Oo]/g, 'fo');
+  txt = txt.replace(/u[Uu]/g, 'fu');
+  txt = txt.replace(/A[Aa]/g, 'Fa');
+  txt = txt.replace(/E[Ee]/g, 'Fe');
+  txt = txt.replace(/I[Ii]/g, 'Fi');
+  txt = txt.replace(/O[Oo]/g, 'Fo');
+  txt = txt.replace(/U[Uu]/g, 'Fu');
 
   return txt;
 }
 
 function __ltnR2so(txt) { // Second Orthography
-  aposSplit = txt.split(/H[Ff]/);
+  aposSplit = txt.split(/F[Hh]/);
   _txt = aposSplit[0];
   for (_ = 1; _ < aposSplit.length; _ ++) {
     _txt += "'" + aposSplit[_].slice(0, 1).toUpperCase() + aposSplit[_].slice(1);
@@ -107,22 +113,22 @@ function __ltnR2so(txt) { // Second Orthography
 
   const charsList = [
     ['ƣ', 'ff'],
-    ['б', 'dm'],
-    ['г', 'zm'],
-    ['д', 'tf'],
-    ['ж', 'zj'],
-    ['м', 'nm'],
-    ['п', 'tm'],
-    ['ф', 'sm'],
-    ['ч', 'sf'],
-    ['ш', 'sj'],
-    ['ъ', 'kf'],
-    ['ā', 'af'],
-    ['ē', 'ef'],
-    ['ī', 'if'],
-    ['ō', 'of'],
-    ['ū', 'uf'],
-    ["'", 'hf'],
+    ['б', 'md'],
+    ['г', 'mz'],
+    ['д', 'ft'],
+    ['ж', 'jz'],
+    ['м', 'mn'],
+    ['п', 'mt'],
+    ['ф', 'ms'],
+    ['ч', 'fs'],
+    ['ш', 'js'],
+    ['ъ', 'fk'],
+    ['ā', 'fa'],
+    ['ē', 'fe'],
+    ['ī', 'fi'],
+    ['ō', 'fo'],
+    ['ū', 'fu'],
+    ["'", 'fh'],
   ];
 
   for (_ = 0; _ < charsList.length; _ ++) {
@@ -141,26 +147,24 @@ function __ltnR2so(txt) { // Second Orthography
 }
 
 function __ltnR2ipa(txt) {
-  txt = txt.toLowerCase();
-  txt = txt.replaceAll('ff', 'ʕ');
-
   const charsList = {
-    'dm': 'd̼',
-    'zm': 'ð̼',
-    'tf': 'tʼ',
-    'zj': 'ʐ',
-    'nm': 'n̼',
-    'tm': 't̼',
-    'sm': 'θ̼',
-    'sf': 't͡ɬʼ',
-    'sj': 'ʂ',
-    'kf': 'qʼ',
-    'hf': 'ʔ',
-    'af': 'ɶː',
-    'ef': 'øː',
-    'if': 'yː',
-    'of': 'ɤː',
-    'uf': 'ɯː',
+    'ff': 'ʕ',
+    'md': 'd̼',
+    'mz': 'ð̼',
+    'ft': 'tʼ',
+    'jz': 'ʐ',
+    'mn': 'n̼',
+    'mt': 't̼',
+    'ms': 'θ̼',
+    'fs': 't͡ɬʼ',
+    'js': 'ʂ',
+    'fk': 'qʼ',
+    'fh': 'ʔ',
+    'fa': 'ɶː',
+    'fe': 'øː',
+    'fi': 'yː',
+    'fo': 'ɤː',
+    'fu': 'ɯː',
     'p': 'ʙ̥',
     'b': 'ʙ',
     'c': 'c',
@@ -186,6 +190,7 @@ function __ltnR2ipa(txt) {
     'u': 'ɯ',
   };
 
+  txt = txt.toLowerCase();
   res = '';
   while (txt) {
     if (charsList[txt.slice(0, 2)]) {
@@ -204,12 +209,17 @@ function __ltnR2ipa(txt) {
 }
 
 function __ipa2ipaPhonetic(txt) {
-  txt = txt.replace(/([ɖɳʈʐʂ])ɬ/g, '$1ɭ̊˔');
-  txt = txt.replace(/([ɖɳʈʐʂ])ɮ/g, '$1ɭ˔');
-  txt = txt.replace(/([ɖɳʈʐʂ])t͡ɬʼ/g, '$1ʈ͡ɭ̊˔ʼ');
-  txt = txt.replace(/ɬ([ɖɳʈʐʂ])/g, 'ɭ̊˔$1');
-  txt = txt.replace(/ɮ([ɖɳʈʐʂ])/g, 'ɭ˔$1');
-  txt = txt.replace(/t͡ɬʼ([ɖɳʈʐʂ])/g, 'ʈ͡ɭ̊˔ʼ$1');
+  // ↓ここもっと簡略化できないものか
+  _txt = null;
+  while (txt != _txt) {
+    _txt = txt;
+    txt = txt.replace(/([ɖɳʈʐ](ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*)t͡ɬʼ/g, '$1ʈ͡ɭ̊˔ʼ');
+    txt = txt.replace(/t͡ɬʼ((ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*[ɖɳʈʐ])/g, 'ʈ͡ɭ̊˔ʼ$1');
+    txt = txt.replace(/([ɖɳʈʐ](ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*)ɬ/g, '$1ɭ̊˔');
+    txt = txt.replace(/ɬ((ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*[ɖɳʈʐ])/g, 'ɭ̊˔$1');
+    txt = txt.replace(/([ɖɳʈʐ](ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*)ɮ/g, '$1ɭ˔');
+    txt = txt.replace(/ɮ((ʂ|ɬ|ɮ|t͡ɬʼ|ɭ̊˔|ɭ˔|ʈ͡ɭ̊˔ʼ)*[ɖɳʈʐ])/g, 'ɭ˔$1');
+  }
 
   const affricatesList = [
     ['t̼', 'θ̼'],
@@ -231,34 +241,38 @@ function __ipa2ipaPhonetic(txt) {
 }
 
 function __ltnR2ltn(txt) {
-  txt = txt.replace(/([aeiou])[Ff]/g, '$1$1');
-  txt = txt.replace(/A[Ff]/g, 'Aa');
-  txt = txt.replace(/E[Ff]/g, 'Ee');
-  txt = txt.replace(/I[Ff]/g, 'Ii');
-  txt = txt.replace(/O[Ff]/g, 'Oo');
-  txt = txt.replace(/U[Ff]/g, 'Uu');
+  txt = txt.replaceAll('fa', 'aa');
+  txt = txt.replaceAll('fe', 'ee');
+  txt = txt.replaceAll('fi', 'ii');
+  txt = txt.replaceAll('fo', 'oo');
+  txt = txt.replaceAll('fu', 'uu');
+  txt = txt.replaceAll('Fa', 'Aa');
+  txt = txt.replaceAll('Fe', 'Ee');
+  txt = txt.replaceAll('Fi', 'Ii');
+  txt = txt.replaceAll('Fo', 'Oo');
+  txt = txt.replaceAll('Fu', 'Uu');
   return txt;
 }
 
 // const charsList = [
 //   ['ƣ', 'ʕ',   'ff'],
-//   ['б', 'd̼',   'dm'],
-//   ['г', 'ð̼',   'zm'],
-//   ['д', 'tʼ',  'tf'],
-//   ['ж', 'ʐ',   'zj'],
-//   ['м', 'n̼',   'nm'],
-//   ['п', 't̼',   'tm'],
-//   ['ф', 'θ̼',   'sm'],
-//   ['ч', 't͡ɬʼ', 'sf'],
-//   ['ш', 'ʂ',   'sj'],
-//   ['ъ', 'qʼ',  'kf'],
-//   ["'", 'ʔ',   'hf'],
+//   ['б', 'd̼',   'md'],
+//   ['г', 'ð̼',   'mz'],
+//   ['д', 'tʼ',  'ft'],
+//   ['ж', 'ʐ',   'jz'],
+//   ['м', 'n̼',   'mn'],
+//   ['п', 't̼',   'mt'],
+//   ['ф', 'θ̼',   'ms'],
+//   ['ч', 't͡ɬʼ', 'fs'],
+//   ['ш', 'ʂ',   'js'],
+//   ['ъ', 'qʼ',  'fk'],
+//   ["'", 'ʔ',   'fh'],
 //   ['p', 'ʙ̥'],
-//   ['ā', 'ɶː',  'af'],
-//   ['ē', 'øː',  'ef'],
-//   ['ī', 'yː',  'if'],
-//   ['ō', 'ɤː',  'of'],
-//   ['ū', 'ɯː',  'uf'],
+//   ['ā', 'ɶː',  'fa'],
+//   ['ē', 'øː',  'fe'],
+//   ['ī', 'yː',  'fi'],
+//   ['ō', 'ɤː',  'fo'],
+//   ['ū', 'ɯː',  'fu'],
 //   ['b', 'ʙ'],
 //   ['c', 'c'],
 //   ['d', 'ɖ'],

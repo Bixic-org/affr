@@ -18,7 +18,7 @@
 
       <div id="main">
         <b>入力：</b>
-        <textarea id="txt-input" class="txtbox" lang="ru" onkeydown="convert();" onkeyup="convert();" onchange="convert();"></textarea>
+        <textarea id="txt-input" lang="ru" onkeydown="convert();" onkeyup="convert();" onchange="convert();"></textarea>
         <div id="operation-box">
           出力種別：
           <select id="select-output-type" class="dropdn" name="select-output-type" title="出力の種類" onchange="convert();inputboxFocus();">
@@ -33,7 +33,7 @@
           <button id="copy-res" title="出力結果をクリップボードにコピー" type="button" onclick="copyVal();">結果コピー <span class="far fa-clipboard"><!-- クリップボード --></span></button>
         </div>
         <b>出力：</b>
-        <textarea id="txt-output" class="txtbox" lang="ru" readonly></textarea>
+        <textarea id="txt-output" lang="ru" readonly></textarea>
       </div>
 
       <h2 id="how-to-use">使い方</h2>
@@ -42,13 +42,13 @@
         <li>出力する形式は、中央の [出力種別] から選択してください。
           <ul>
             <li>第二正書法、ラテン文字転写(=羅字転写)、IPAの音素表記と音声表記<!-- 、㐎字転写 -->に対応しています。</li>
-            <li>[羅字転写(長母音f型)] では、長母音 を 短母音+f で出力します。</li>
-            <li>[IPA(音素)] では、以下に示す<a href="#pronunciation">音字対応表</a>のとおりに音素で表記します（詳細は後述）。</li>
+            <li>[羅字転写(長母音f型)] では、長母音 を f+短母音 で出力します。</li>
+            <li>[IPA(音素)] では、以下に示す<a href="#pronunciation">音字対応表</a>のとおりに音素で表記します。</li>
             <li>[IPA(音声)] では、オ゛ェｼﾞｭルニョェーッ語首都方言に基づいた実際の発音変化を反映します（<a href="#phonetic">後述</a>）。</li>
           </ul>
         </li>
         <li>「<span lang="ru">'</span>」が先頭に来る際の大文字化規則は自動で処理します。</li>
-        <li>変換対象外の文字は無視してそのまま出力されますのでご注意ください。</li>
+        <li>変換対象外の文字は、無視してそのまま出力されます。</li>
         <!-- <li><span class="pre">\</span>（バックスラッシュ）を用いたエスケープもできます。</li> ←そのうちやりたいという願望 -->
         <li>[結果コピー] ボタンにより、出力結果をクリップボードにコピーします。</li>
       </ul>
@@ -83,43 +83,43 @@
             </tr>
             <tr>
               <td>Gg</td><td>[ɢ]</td>
-              <td>Бб</td><td>[d̼]</td><td><span class="pre">dm</span></td>
+              <td>Бб</td><td>[d̼]</td><td><span class="pre">md</span></td>
             </tr>
             <tr>
               <td>Hh</td><td>[ħ]</td>
-              <td>Гг</td><td>[ð̼]</td><td><span class="pre">zm</span></td>
+              <td>Гг</td><td>[ð̼]</td><td><span class="pre">mz</span></td>
             </tr>
             <tr>
               <td>Ii</td><td>[y]</td>
-              <td>Дд</td><td>[tʼ]</td><td><span class="pre">tf</span></td>
+              <td>Дд</td><td>[tʼ]</td><td><span class="pre">ft</span></td>
             </tr>
             <tr>
               <td>Kk</td><td>[q]</td>
-              <td>Жж</td><td>[ʐ]</td><td><span class="pre">zj</span></td>
+              <td>Жж</td><td>[ʐ]</td><td><span class="pre">jz</span></td>
             </tr>
             <tr>
               <td>Ll</td><td>[ʁ]</td>
-              <td>Мм</td><td>[n̼]</td><td><span class="pre">nm</span></td>
+              <td>Мм</td><td>[n̼]</td><td><span class="pre">mn</span></td>
             </tr>
             <tr>
               <td>Nn</td><td>[ɳ]</td>
-              <td>Пп</td><td>[t̼]</td><td><span class="pre">tm</span></td>
+              <td>Пп</td><td>[t̼]</td><td><span class="pre">mt</span></td>
             </tr>
             <tr>
               <td>Oo</td><td>[ɤ]</td>
-              <td>Фф</td><td>[θ̼]</td><td><span class="pre">sm</span></td>
+              <td>Фф</td><td>[θ̼]</td><td><span class="pre">ms</span></td>
             </tr>
             <tr>
               <td>Pp</td><td>[ʙ̥]</td>
-              <td>Чч</td><td>[t͡ɬʼ]</td><td><span class="pre">sf</span></td>
+              <td>Чч</td><td>[t͡ɬʼ]</td><td><span class="pre">fs</span></td>
             </tr>
             <tr>
               <td>Qq</td><td>[ɟ]</td>
-              <td>Шш</td><td>[ʂ]</td><td><span class="pre">sj</span></td>
+              <td>Шш</td><td>[ʂ]</td><td><span class="pre">js</span></td>
             </tr>
             <tr>
               <td>Rr</td><td>[r]</td>
-              <td>Ъъ</td><td>[qʼ]</td><td><span class="pre">kf</span></td>
+              <td>Ъъ</td><td>[qʼ]</td><td><span class="pre">fk</span></td>
             </tr>
             <tr>
               <td>Ss</td><td>[ɬ]</td>
@@ -127,7 +127,7 @@
             </tr>
             <tr>
               <td>Tt</td><td>[ʈ]</td>
-              <td>'</td><td>[ʔ]</td><td><span class="pre">hf</span></td>
+              <td>'</td><td>[ʔ]</td><td><span class="pre">fh</span></td>
             </tr>
               <td>Uu</td><td>[ɯ]</td>
             <tr>
@@ -138,13 +138,13 @@
           <h3>表記について</h3>
           <ul>
             <li>「<a href="https://ja.wikipedia.org/wiki/Ƣ" title="Ƣ - Wikipedia"><span lang="ru">Ƣ, ƣ</span></a>」は、ラテン文字で gha と呼ばれる。</li>
-            <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン転写時には通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「母音 + <span class="pre">f</span>」で表すことがある。</li>
+            <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン転写時には通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「<span class="pre">f</span> + 母音」で表すことがある。</li>
             <li>文頭や固有名詞の頭文字は大文字となるが、1文字目が「<span lang="ru">'</span>」である場合は代わりに2文字目を大文字とする。</li>
           </ul>
           <h3 id="phonetic">音声について</h3>
           <ul>
-            <li>s /ɬ/, z /ɮ/, ч /t͡ɬʼ/ がそり舌音と隣り合う場合は、それぞれ [ɭ̊˔], [ɭ˔], [ʈ͡ɭ̊˔ʼ] とそり舌化します。</li>
-            <li>破裂音と摩擦音が続く場合は、破擦音とみなします（出力時にはタイで結ばれます：ʈ͡ʂ のように）。</li>
+            <li>s /ɬ/, z /ɮ/, ч /t͡ɬʼ/ がそり舌音と隣り合う場合は、それぞれ [ɭ̊˔], [ɭ˔], [ʈ͡ɭ̊˔ʼ] とそり舌化する。</li>
+            <li>破裂音と摩擦音が続く場合は、破擦音とみなす（出力時にはタイで結ばれます：ʈ͡ʂ のように）。</li>
           </ul>
         </div>
       </div>
@@ -160,7 +160,7 @@
       <p>Q.　ソースが汚いよ。<br/><!--
       -->A.　ごめんね。</p>
       <p>Q.　再配布したいな。<br/><!--
-      -->A.　いやです。</p>
+      -->A.　やめてね。</p>
     </div>
 
     <div id="footer">

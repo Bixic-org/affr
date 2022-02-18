@@ -1,6 +1,7 @@
 /* メモ
   オエル語テーマカラー: #FFFFD5, #876917
 */
+
 body {
   background-color: #FFFFD5;
   font-family: serif;
@@ -19,12 +20,23 @@ a {
   width: 90%;
   max-width: 800px;
 }
-.txtbox {
+#txt-input,
+#txt-output {
   display: block;
-  font-family: serif;
-  font-size: 1.2em;
-  min-height: 7.5em;
+  font-family: inherit;
+  font-size: 1.1em;
   width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+#txt-input {
+  height: 8.4em;
+  min-height: 8.4em;
+}
+#txt-output {
+  height: 12.6em;
+  min-height: 12.6em;
+  line-height: 1.5em;
 }
 #operation-box {
   margin: 5px auto;
