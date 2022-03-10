@@ -1,173 +1,199 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>オエル語キーボード</title>
-    <meta charset="utf-8"/>
-    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet"/>
-    <link id="favicon" rel="icon" href="https://Bixic-org.github.io/Logo_Bixic.png">
-  </head>
+    <head prefix="og: http://ogp.me/ns#">
+        <title>オエル語キーボード</title>
+        <meta property="og:url" content="https://bixic-org.github.io/affr/kb/" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="オエル語キーボード" />
+        <meta property="og:description" content="オ゛ェｼﾞｭルニョェーッ語の各種表記を相互変換するツール" />
+        <meta property="og:site_name" content="Brxōdƣez, lanva?!" />
+        <meta property="og:image" content="https://bixic-org.github.io/affr/kb/favicon.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@xirdim" />
+        <meta charset="utf-8"/>
+        <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+        <link href="main.css" rel="stylesheet"/>
+        <link id="favicon" rel="icon" href="favicon.png">
+    </head>
 
-  <body onload="bodyOnload()">
-    <div id="main-content">
-      <h1>オ゛ェｼﾞｭルニョェーッ語キーボード (β)</h1>
-      <div id="intro">
-        <p><u>※きちんとした動作確認はまだ行っておりませんのでご注意ください。</u></p>
-        <p>オ゛ェｼﾞｭルニョェーッ語の各種表記を相互変換するツールです。<a href="#how-to-use">使い方は以下を参照してください</a>。</p>
-      </div>
+    <body onload="bodyOnload()">
+        <div id="main-content">
+            <h1>オ゛ェｼﾞｭルニョェーッ語キーボード (β)</h1>
+            <div id="intro">
+                <p><u>※きちんとした動作確認はまだ行っておりませんのでご注意ください。</u></p>
+                <p>オ゛ェｼﾞｭルニョェーッ語の各種表記を相互変換するツールです。<a href="#how-to-use">使い方は以下を参照してください</a>。</p>
+            </div>
 
-      <div id="main">
-        <b>入力：</b>
-        <textarea id="txt-input" lang="ru" onkeydown="convert();" onkeyup="convert();" onchange="convert();"></textarea>
-        <div id="operation-box">
-          出力種別：
-          <select id="select-output-type" class="dropdn" name="select-output-type" title="出力の種類" onchange="convert();inputboxFocus();">
-            <option value="2nd-ortho" selected>第二正書法</option>
-            <option value="ltn-trans">羅字転写</option>
-            <option value="ltn-trans-reversible">羅字転写(長母音f型)</option>
-            <option value="ipa">IPA(音素)</option>
-            <option value="ipa-phonetic">IPA(音声)</option>
-            <!-- <option value="gulja">㐎字転写法</option> -->
-          </select>
-          <span style="opacity: 0.8; font-size: 1.2em;">｜</span>
-          <button id="copy-res" title="出力結果をクリップボードにコピー" type="button" onclick="copyVal();">結果コピー <span class="far fa-clipboard"><!-- クリップボード --></span></button>
+            <div id="main">
+                <b>入力：</b>
+                <textarea id="txt-input" lang="ru" onkeydown="convert();" onkeyup="convert();" onchange="convert();"></textarea>
+                <div id="operation-box">
+                    出力種別：
+                    <select id="select-output-type" class="dropdn" name="select-output-type" title="出力の種類" onchange="convert();inputboxFocus();">
+                        <option value="2nd-ortho" selected>第二正書法</option>
+                        <option value="ltn-trans">羅字転写</option>
+                        <option value="ltn-trans-reversible">羅字転写(長母音f型)</option>
+                        <option value="ipa">IPA(音素)</option>
+                        <option value="ipa-phonetic">IPA(音声)</option>
+                        <!-- <option value="gulja">㐎字転写法</option> -->
+                    </select>
+                    <span style="opacity: 0.8; font-size: 1.2em;">｜</span>
+                    <button id="copy-res" title="出力結果をクリップボードにコピー" type="button" onclick="copyVal();">結果コピー <span class="far fa-clipboard"><!-- クリップボード --></span></button>
+                </div>
+                <b>出力：</b>
+                <textarea id="txt-output" lang="ru" readonly></textarea>
+            </div>
+
+            <h2 id="how-to-use">使い方</h2>
+            <ul>
+                <li>入力は第二正書法と羅字転写に対応しています。</li>
+                <li>出力する形式は、中央の [出力種別] から選択してください。
+                    <ul>
+                        <li>第二正書法、ラテン文字転写(=羅字転写)、IPAの音素表記と音声表記<!-- 、㐎字転写 -->に対応しています。</li>
+                        <li>[羅字転写(長母音f型)] では、長母音 を f+短母音 で出力します。</li>
+                        <li>[IPA(音素)] では、以下に示す<a href="#pronunciation">音字対応表</a>のとおりに音素で表記します。</li>
+                        <li>[IPA(音声)] では、オ゛ェｼﾞｭルニョェーッ語首都方言に基づいた実際の発音変化を反映します（<a href="#phonetic">後述</a>）。</li>
+                    </ul>
+                </li>
+                <li>「<span lang="ru">'</span>」が先頭に来る際の大文字化規則は自動で処理します。</li>
+                <li>変換対象外の文字は、無視してそのまま出力されます。</li>
+                <!-- <li><span class="pre">\</span>（バックスラッシュ）を用いたエスケープもできます。</li> ←そのうちやりたいという願望 -->
+                <li>[結果コピー] ボタンにより、出力結果をクリップボードにコピーします。</li>
+            </ul>
+
+            <h2 id="pronunciation">オ゛ェｼﾞｭルニョェーッ語の発音について</h2>
+            <div id="char-doc">
+                <div id="char-list">
+                    <table lang="ru">
+                        <tr>
+                            <td>第二<br/>正書法</td><td>発音</td>
+                            <td>第二<br/>正書法</td><td>発音</td><td>羅字転写</td>
+                        </tr>
+                        <tr>
+                            <td>Aa</td><td>[ɶ]</td>
+                            <td>Vv</td><td>[ⱱ]</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Bb</td><td>[ʙ]</td>
+                            <td>Ww</td><td>[ɰ]</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Cc</td><td>[c]</td>
+                            <td>Xx</td><td>[x]</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Dd</td><td>[ɖ]</td>
+                            <td>Yy</td><td>[ɥ]</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Ee</td><td>[ø]</td>
+                            <td>Zz</td><td>[ɮ]</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>Gg</td><td>[ɢ]</td>
+                            <td>Бб</td><td>[d̼]</td><td><span class="pre">md</span></td>
+                        </tr>
+                        <tr>
+                            <td>Hh</td><td>[ħ]</td>
+                            <td>Гг</td><td>[ð̼]</td><td><span class="pre">mz</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ii</td><td>[y]</td>
+                            <td>Дд</td><td>[tʼ]</td><td><span class="pre">ft</span></td>
+                        </tr>
+                        <tr>
+                            <td>Kk</td><td>[q]</td>
+                            <td>Жж</td><td>[ʐ]</td><td><span class="pre">jz</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ll</td><td>[ʁ]</td>
+                            <td>Мм</td><td>[n̼]</td><td><span class="pre">mn</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nn</td><td>[ɳ]</td>
+                            <td>Пп</td><td>[t̼]</td><td><span class="pre">mt</span></td>
+                        </tr>
+                        <tr>
+                            <td>Oo</td><td>[ɤ]</td>
+                            <td>Фф</td><td>[θ̼]</td><td><span class="pre">ms</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pp</td><td>[ʙ̥]</td>
+                            <td>Чч</td><td>[t͡ɬʼ]</td><td><span class="pre">fs</span></td>
+                        </tr>
+                        <tr>
+                            <td>Qq</td><td>[ɟ]</td>
+                            <td>Шш</td><td>[ʂ]</td><td><span class="pre">js</span></td>
+                        </tr>
+                        <tr>
+                            <td>Rr</td><td>[r]</td>
+                            <td>Ъъ</td><td>[qʼ]</td><td><span class="pre">fk</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ss</td><td>[ɬ]</td>
+                            <td>Ƣƣ</td><td>[ʕ]</td><td><span class="pre">ff</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tt</td><td>[ʈ]</td>
+                            <td>'</td><td>[ʔ]</td><td><span class="pre">fh</span></td>
+                        </tr>
+                            <td>Uu</td><td>[ɯ]</td>
+                        <tr>
+                        </tr>
+                    </table>
+                </div>
+                <div id="char-note">
+                    <h3>表記について</h3>
+                    <ul>
+                        <li>「<a href="https://ja.wikipedia.org/wiki/Ƣ" title="Ƣ - Wikipedia"><span lang="ru">Ƣ, ƣ</span></a>」は、ラテン文字で gha と呼ばれる。</li>
+                        <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン転写時には通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「<span class="pre">f</span> + 母音」で表すことがある。</li>
+                        <li>文頭や固有名詞の頭文字は大文字となるが、1文字目が「<span lang="ru">'</span>」である場合は代わりに2文字目を大文字とする。</li>
+                    </ul>
+                    <h3 id="phonetic">音声について</h3>
+                    <ul>
+                        <li>s /ɬ/, z /ɮ/, ч /t͡ɬʼ/ がそり舌音と隣り合う場合は、それぞれ [ɭ̊˔], [ɭ˔], [ʈ͡ɭ̊˔ʼ] とそり舌化する。</li>
+                        <li>破裂音と摩擦音が続く場合は、破擦音とみなす（出力時にはタイで結ばれます：ʈ͡ʂ のように）。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="clear: both;"></div>
+            <h2>FAQ</h2>
+            <p>Q.　動作しないんですが？<br/><!--
+            -->A.　JavaScript は有効ですか？お使いのブラウザは最新ですか？色々なブラウザを試しましたか？<s>（質問に質問で返すな）</s></p>
+            <p>Q.　出力がされない［途中で止まる］んですが？／出力結果・文字一覧がおかしいんですが？<br/><!--
+            -->A.　申し訳ございません！　Twitter（<a href="https://twitter.com/xirdim" title="@xirdim - Twitter">@xirdim</a>）か、その他 Discord サーバ等で Xirdim までお知らせください。</p>
+            <p>Q.　使いづらいよ。／この機能つけて。<br/><!--
+            -->A.　上記の方法で連絡もらえれば、なるべく解決に努めます。</p>
+            <p>Q.　ソースが汚いよ。<br/><!--
+            -->A.　ごめんね。</p>
+            <p>Q.　再配布したいな。<br/><!--
+            -->A.　やめてね。</p>
         </div>
-        <b>出力：</b>
-        <textarea id="txt-output" lang="ru" readonly></textarea>
-      </div>
 
-      <h2 id="how-to-use">使い方</h2>
-      <ul>
-        <li>入力は第二正書法と羅字転写に対応しています。</li>
-        <li>出力する形式は、中央の [出力種別] から選択してください。
-          <ul>
-            <li>第二正書法、ラテン文字転写(=羅字転写)、IPAの音素表記と音声表記<!-- 、㐎字転写 -->に対応しています。</li>
-            <li>[羅字転写(長母音f型)] では、長母音 を f+短母音 で出力します。</li>
-            <li>[IPA(音素)] では、以下に示す<a href="#pronunciation">音字対応表</a>のとおりに音素で表記します。</li>
-            <li>[IPA(音声)] では、オ゛ェｼﾞｭルニョェーッ語首都方言に基づいた実際の発音変化を反映します（<a href="#phonetic">後述</a>）。</li>
-          </ul>
-        </li>
-        <li>「<span lang="ru">'</span>」が先頭に来る際の大文字化規則は自動で処理します。</li>
-        <li>変換対象外の文字は、無視してそのまま出力されます。</li>
-        <!-- <li><span class="pre">\</span>（バックスラッシュ）を用いたエスケープもできます。</li> ←そのうちやりたいという願望 -->
-        <li>[結果コピー] ボタンにより、出力結果をクリップボードにコピーします。</li>
-      </ul>
-
-      <h2 id="pronunciation">オ゛ェｼﾞｭルニョェーッ語の発音について</h2>
-      <div id="char-doc">
-        <div id="char-list">
-          <table lang="ru">
-            <tr>
-              <td>第二<br/>正書法</td><td>発音</td>
-              <td>第二<br/>正書法</td><td>発音</td><td>羅字転写</td>
-            </tr>
-            <tr>
-              <td>Aa</td><td>[ɶ]</td>
-              <td>Vv</td><td>[ⱱ]</td><td></td>
-            </tr>
-            <tr>
-              <td>Bb</td><td>[ʙ]</td>
-              <td>Ww</td><td>[ɰ]</td><td></td>
-            </tr>
-            <tr>
-              <td>Cc</td><td>[c]</td>
-              <td>Xx</td><td>[x]</td><td></td>
-            </tr>
-            <tr>
-              <td>Dd</td><td>[ɖ]</td>
-              <td>Yy</td><td>[ɥ]</td><td></td>
-            </tr>
-            <tr>
-              <td>Ee</td><td>[ø]</td>
-              <td>Zz</td><td>[ɮ]</td><td></td>
-            </tr>
-            <tr>
-              <td>Gg</td><td>[ɢ]</td>
-              <td>Бб</td><td>[d̼]</td><td><span class="pre">md</span></td>
-            </tr>
-            <tr>
-              <td>Hh</td><td>[ħ]</td>
-              <td>Гг</td><td>[ð̼]</td><td><span class="pre">mz</span></td>
-            </tr>
-            <tr>
-              <td>Ii</td><td>[y]</td>
-              <td>Дд</td><td>[tʼ]</td><td><span class="pre">ft</span></td>
-            </tr>
-            <tr>
-              <td>Kk</td><td>[q]</td>
-              <td>Жж</td><td>[ʐ]</td><td><span class="pre">jz</span></td>
-            </tr>
-            <tr>
-              <td>Ll</td><td>[ʁ]</td>
-              <td>Мм</td><td>[n̼]</td><td><span class="pre">mn</span></td>
-            </tr>
-            <tr>
-              <td>Nn</td><td>[ɳ]</td>
-              <td>Пп</td><td>[t̼]</td><td><span class="pre">mt</span></td>
-            </tr>
-            <tr>
-              <td>Oo</td><td>[ɤ]</td>
-              <td>Фф</td><td>[θ̼]</td><td><span class="pre">ms</span></td>
-            </tr>
-            <tr>
-              <td>Pp</td><td>[ʙ̥]</td>
-              <td>Чч</td><td>[t͡ɬʼ]</td><td><span class="pre">fs</span></td>
-            </tr>
-            <tr>
-              <td>Qq</td><td>[ɟ]</td>
-              <td>Шш</td><td>[ʂ]</td><td><span class="pre">js</span></td>
-            </tr>
-            <tr>
-              <td>Rr</td><td>[r]</td>
-              <td>Ъъ</td><td>[qʼ]</td><td><span class="pre">fk</span></td>
-            </tr>
-            <tr>
-              <td>Ss</td><td>[ɬ]</td>
-              <td>Ƣƣ</td><td>[ʕ]</td><td><span class="pre">ff</span></td>
-            </tr>
-            <tr>
-              <td>Tt</td><td>[ʈ]</td>
-              <td>'</td><td>[ʔ]</td><td><span class="pre">fh</span></td>
-            </tr>
-              <td>Uu</td><td>[ɯ]</td>
-            <tr>
-            </tr>
-          </table>
+        <div id="footer">
+                <span class="fab fa-github github-icon" style="font-size: 1.2em;"></span>
+                <a href="https://github.com/Bixic-org/affr" target="_blank">View on GitHub</a>
         </div>
-        <div id="char-note">
-          <h3>表記について</h3>
-          <ul>
-            <li>「<a href="https://ja.wikipedia.org/wiki/Ƣ" title="Ƣ - Wikipedia"><span lang="ru">Ƣ, ƣ</span></a>」は、ラテン文字で gha と呼ばれる。</li>
-            <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン転写時には通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「<span class="pre">f</span> + 母音」で表すことがある。</li>
-            <li>文頭や固有名詞の頭文字は大文字となるが、1文字目が「<span lang="ru">'</span>」である場合は代わりに2文字目を大文字とする。</li>
-          </ul>
-          <h3 id="phonetic">音声について</h3>
-          <ul>
-            <li>s /ɬ/, z /ɮ/, ч /t͡ɬʼ/ がそり舌音と隣り合う場合は、それぞれ [ɭ̊˔], [ɭ˔], [ʈ͡ɭ̊˔ʼ] とそり舌化する。</li>
-            <li>破裂音と摩擦音が続く場合は、破擦音とみなす（出力時にはタイで結ばれます：ʈ͡ʂ のように）。</li>
-          </ul>
-        </div>
-      </div>
 
-      <div style="clear: both;"></div>
-      <h2>FAQ</h2>
-      <p>Q.　動作しないんですが？<br/><!--
-      -->A.　JavaScript は有効ですか？お使いのブラウザは最新ですか？色々なブラウザを試しましたか？<s>（質問に質問で返すな）</s></p>
-      <p>Q.　出力がされない［途中で止まる］んですが？／出力結果・文字一覧がおかしいんですが？<br/><!--
-      -->A.　申し訳ございません！　Twitter（<a href="https://twitter.com/xirdim" title="@xirdim - Twitter">@xirdim</a>）か、その他 Discord サーバ等で Xirdim までお知らせください。</p>
-      <p>Q.　使いづらいよ。／この機能つけて。<br/><!--
-      -->A.　上記の方法で連絡もらえれば、なるべく解決に努めます。</p>
-      <p>Q.　ソースが汚いよ。<br/><!--
-      -->A.　ごめんね。</p>
-      <p>Q.　再配布したいな。<br/><!--
-      -->A.　やめてね。</p>
-    </div>
-
-    <div id="footer">
-        <span class="fab fa-github github-icon" style="font-size: 1.2em;"></span>
-        <a href="https://github.com/Bixic-org/affr" target="_blank">View on GitHub</a>
-    </div>
-
-    <script src="main.js" type="text/javascript"></script>
-  </body>
+        <script src="main.js" type="text/javascript"></script>
+    </body>
 </html>
+<!--
+    FAQ 英訳案
+
+    Q. It seems not to work. Why?
+    A. Is JavaScript Available? Is your browser the newest version? Have you tried various browsers? <s>(This is so-called an "answer with qwestions")</s>
+
+    Q. Output doesn't work or suddenly stops. Why? / Output or the letter list is wrong, isn't it?
+    A. Very sorry! Please notice that to me, Xirdim, in Twitter (@xirdim), a Discord server or somewhere.
+
+    Q. Make it more user-friendly. / Add some functions.
+    A. Give me touch in tools above, and I'll try to improve if I can.
+
+    Q. Can't you write more clear code?
+    A. Sorry I can't.
+
+    Q. I wanna distribute this.
+    A. Sorry you can't.
+-->

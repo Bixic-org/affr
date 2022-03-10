@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <style>
+        <![CDATA[ @import url(https://fonts.googleapis.com); ]]>
+        <![CDATA[ @import url(https://fonts.gstatic.com); ]]>
+        <![CDATA[ @import url(https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap); ]]>
+
+        #bg {
+            fill: #876917;
+        }
+        .text {
+            fill: #ffffd5;
+            font-family: 'Ubuntu Mono', sans-serif;
+            font-size: 50px;
+            text-anchor: middle;
+        }
+        .left {
+            transform: scale(1.2,1);
+            transform-origin: 30px;
+        }
+        .right {
+            transform: scale(1.2,1);
+            transform-origin: 70px;
+        }
+    </style>
+    <rect width="100" height="100" id="bg" />
+    <text x="30" y="40" class="text left">A</text>
+    <text x="70" y="40" class="text right">S</text>
+    <text x="30" y="90" class="text left">D</text>
+    <text x="70" y="90" class="text right">Ƣ</text>
+</svg>
