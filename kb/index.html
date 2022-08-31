@@ -11,6 +11,9 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@xirdim" />
         <meta charset="utf-8"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Tinos&display=swap" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
         <link href="main.css" rel="stylesheet"/>
         <link id="favicon" rel="icon" href="favicon.png">
@@ -21,9 +24,24 @@
             <h1>オ゛ェｼﾞｭルニョェーッ語キーボード (β)</h1>
             <div id="intro">
                 <p><u>※きちんとした動作確認はまだ行っておりませんのでご注意ください。</u></p>
-                <p>オ゛ェｼﾞｭルニョェーッ語の各種表記を相互変換するツールです。<a href="#how-to-use">使い方は以下を参照してください</a>。</p>
+                <p>オ゛ェｼﾞｭルニョェーッ語の各種表記を相互変換するツールです。<a href="#how-to-use">使い方の詳細は以下を参照してください</a>。</p>
             </div>
-
+            <hr class="hr"/>
+            <p>
+                <b>〈ラテン代替入力〉</b><br/>
+                　<span class="pre">fh</span>→',
+                <span class="pre">ff</span>→ƣ /
+                <span class="pre">js</span>→ш,
+                <span class="pre">jz</span>→ж /
+                <span class="pre">ft</span>→д,
+                <span class="pre">fs</span>→ч,
+                <span class="pre">fk</span>→ъ /
+                <span class="pre">mn</span>→м,
+                <span class="pre">mt</span>→п,
+                <span class="pre">md</span>→б,
+                <span class="pre">ms</span>→ф,
+                <span class="pre">mz</span>→г
+            </p>
             <div id="main">
                 <b>入力：</b>
                 <textarea id="txt-input" lang="ru" onkeydown="convert();" onkeyup="convert();" onchange="convert();"></textarea>
@@ -31,8 +49,8 @@
                     出力種別：
                     <select id="select-output-type" class="dropdn" name="select-output-type" title="出力の種類" onchange="convert();inputboxFocus();">
                         <option value="2nd-ortho" selected>第二正書法</option>
-                        <option value="ltn-trans">羅字転写</option>
-                        <option value="ltn-trans-reversible">羅字転写(長母音f型)</option>
+                        <option value="ltn-trans">ラテン代替</option>
+                        <option value="ltn-trans-reversible">ラテン代替(長母音f)</option>
                         <option value="ipa">IPA(音素)</option>
                         <option value="ipa-phonetic">IPA(音声)</option>
                         <!-- <option value="gulja">㐎字転写法</option> -->
@@ -43,14 +61,14 @@
                 <b>出力：</b>
                 <textarea id="txt-output" lang="ru" readonly></textarea>
             </div>
-
+            
             <h2 id="how-to-use">使い方</h2>
             <ul>
-                <li>入力は第二正書法と羅字転写に対応しています。</li>
+                <li>入力は、第二正書法と、ラテン文字による代替表記（主にファイル名などに用いる；入力に便利）とに対応しています。</li>
                 <li>出力する形式は、中央の [出力種別] から選択してください。
                     <ul>
-                        <li>第二正書法、ラテン文字転写(=羅字転写)、IPAの音素表記と音声表記<!-- 、㐎字転写 -->に対応しています。</li>
-                        <li>[羅字転写(長母音f型)] では、長母音 を f+短母音 で出力します。</li>
+                        <li>第二正書法、ラテン代替表記、IPAの音素表記と音声表記<!-- 、㐎字転写 -->に対応しています。</li>
+                        <li>[ラテン代替(長母音f)] では、長母音 を f + 短母音 で出力します。</li>
                         <li>[IPA(音素)] では、以下に示す<a href="#pronunciation">音字対応表</a>のとおりに音素で表記します。</li>
                         <li>[IPA(音声)] では、オ゛ェｼﾞｭルニョェーッ語首都方言に基づいた実際の発音変化を反映します（<a href="#phonetic">後述</a>）。</li>
                     </ul>
@@ -67,7 +85,7 @@
                     <table lang="ru">
                         <tr>
                             <td>第二<br/>正書法</td><td>発音</td>
-                            <td>第二<br/>正書法</td><td>発音</td><td>羅字転写</td>
+                            <td>第二<br/>正書法</td><td>発音</td><td>ラテン代替</td>
                         </tr>
                         <tr>
                             <td>Aa</td><td>[ɶ]</td>
@@ -145,8 +163,8 @@
                 <div id="char-note">
                     <h3>表記について</h3>
                     <ul>
-                        <li>「<a href="https://ja.wikipedia.org/wiki/Ƣ" title="Ƣ - Wikipedia"><span lang="ru">Ƣ, ƣ</span></a>」は、ラテン文字で gha と呼ばれる。</li>
-                        <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン転写時には通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「<span class="pre">f</span> + 母音」で表すことがある。</li>
+                        <li>「<a href="https://ja.wikipedia.org/wiki/Ƣ" title="Ƣ - Wikipedia"><span lang="ru">Ƣ, ƣ</span></a>」は、gha と呼ばれるラテン文字。</li>
+                        <li>長母音は短母音に<a href="https://ja.wikipedia.org/wiki/マクロン" title="マクロン - Wikipedia">マクロン</a>を付加して表す（<span lang="ru">ā, ē, ī, ō, ū</span>）。ラテン代替表記では通常同じ母音を重ねて表現するが、一意に逆変換する必要がある際には「<span class="pre">f</span> + 短母音」で表すことがある。</li>
                         <li>文頭や固有名詞の頭文字は大文字となるが、1文字目が「<span lang="ru">'</span>」である場合は代わりに2文字目を大文字とする。</li>
                     </ul>
                     <h3 id="phonetic">音声について</h3>
@@ -161,7 +179,7 @@
             <h2>FAQ</h2>
             <p>Q.　動作しないんですが？<br/><!--
             -->A.　JavaScript は有効ですか？お使いのブラウザは最新ですか？色々なブラウザを試しましたか？<s>（質問に質問で返すな）</s></p>
-            <p>Q.　出力がされない［途中で止まる］んですが？／出力結果・文字一覧がおかしいんですが？<br/><!--
+            <p>Q.　出力がいきなり止まるんですが？／出力結果や説明がおかしいんですが？<br/><!--
             -->A.　申し訳ございません！　Twitter（<a href="https://twitter.com/xirdim" title="@xirdim - Twitter">@xirdim</a>）か、その他 Discord サーバ等で Xirdim までお知らせください。</p>
             <p>Q.　使いづらいよ。／この機能つけて。<br/><!--
             -->A.　上記の方法で連絡もらえれば、なるべく解決に努めます。</p>
@@ -183,10 +201,10 @@
     FAQ 英訳案
 
     Q. It seems not to work. Why?
-    A. Is JavaScript Available? Is your browser the newest version? Have you tried various browsers? <s>(This is so-called an "answer with qwestions")</s>
+    A. Is JavaScript Available? Is your browser the latest version? Have you tried on various browsers? <s>(This is so-called an "answer with qwestions")</s>
 
-    Q. Output doesn't work or suddenly stops. Why? / Output or the letter list is wrong, isn't it?
-    A. Very sorry! Please notice that to me, Xirdim, in Twitter (@xirdim), a Discord server or somewhere.
+    Q. The output suddenly stops. Why? / The output or the doc is wrong, isn't it?
+    A. Very sorry!!! Please notice that to me, Xirdim, in Twitter (@xirdim), Discord or somewhere.
 
     Q. Make it more user-friendly. / Add some functions.
     A. Give me touch in tools above, and I'll try to improve if I can.
@@ -194,6 +212,6 @@
     Q. Can't you write more clear code?
     A. Sorry I can't.
 
-    Q. I wanna distribute this.
+    Q. I wanna clone and distribute this.
     A. Sorry you can't.
 -->

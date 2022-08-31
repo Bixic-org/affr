@@ -4,8 +4,16 @@
 
 body {
     background-color: #FFFFD5;
-    font-family: serif;
+    font-family: 'Tinos', serif;
     margin: 0;
+}
+.hr {
+    color: #876917;
+}
+#intro-memo {
+    border: #876917 1px solid;
+    border-radius: 1em;
+    padding: 0 1em;
 }
 #main-content {
     padding: 0 2em;
@@ -65,9 +73,9 @@ a {
     border-right: #876917 1px solid;
 }
 .pre {
-    background-color: #eee;
-    border: #ccc 1px solid;
-    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    background-color: #f8f8f8;
+    border: #e8e8e8 1px solid;
+    font-family: 'Courier Prime', 'Consolas', 'Courier New', Courier, monospace;
 }
 #char-note {
     min-width: 250px;
